@@ -2,34 +2,51 @@
 
 This is a Django project with Celery tasks for asynchronous processing.
 
-# Installation
-Clone this repository:
-git clone https://github.com/im-variable/backgroundtask.git
-cd backgroundtask
+## Installation
 
-# Create a virtual environment and activate it:
-python -m venv venv
-source venv/bin/activate  # On Windows, use: venv\Scripts\activate
-Install project dependencies:
+1. Clone this repository:
 
-pip install -r requirements.txt
+   ```bash
+   git clone https://github.com/im-variable/backgroundtask.git
+   cd backgroundtask
+   ```
 
-# Configuration
-Set up environment variables:
+2. Create a virtual environment and activate it:
 
-Create a .env file in the project root and define the necessary variables:
-SECRET_KEY=mysecretkey
-DEBUG=True
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use: venv\Scripts\activate
+   ```
 
-Update Django settings:
-In settings.py, use python-decouple to access environment variables:
-from decouple import config
+3. Install project dependencies:
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+   ```bash
+   pip install -r requirements.txt
+   ```
 
+## Configuration
 
-# Running the Celery Worker
-Start the Celery worker in a separate terminal window:
+1. Set up environment variables:
 
-celery -A project_name worker -l info
+   Create a `.env` file in the project root and define the necessary variables:
+
+   ```
+   SECRET_KEY=mysecretkey
+   DEBUG=True
+   ```
+
+2. Update Django settings:
+
+   In `settings.py`, use `python-decouple` to access environment variables:
+
+   ```python
+   from decouple import config
+
+   SECRET_KEY = config('SECRET_KEY')
+   DEBUG = config('DEBUG', default=False, cast=bool)
+   ```
+## Running the Celery Worker
+
+   ```bash
+   celery -A backgroundtask worker -l info
+   ```
